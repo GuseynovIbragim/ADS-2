@@ -1,73 +1,87 @@
-// Copyright 2021 NNTU-CS
-
-int countPairs1(int* arr, int len, int value) {
-int cnt = 0;
-for (int i = 0; i < len - 1; i++) {
-for (int j = i + 1; j < len; j++) {
-if (arr[i] + arr[j] == value) {
-cnt++;
+int countPairs1(int* arr, int len, int value)
+{
+int count1 = 0;
+for (int i = 0; i < len; i++)
+{
+for (int j = i + 1; j < len; j++)
+{
+if (arr[i] != arr[j] && arr[i] + arr[j] == value)
+count1++;
 }
 }
+return count1;
 }
-return cnt;
-}
-int countPairs2(int* arr, int len, int value) {
-int cnt = 0, r = len - 1, l = 0, mid;
-while (l < r - 1) {
-mid = (l + r) / 2;
-if (arr[mid] <= value) {
-l = mid + 1;
-} else {
-r = mid;
-}
-}
-int len2 = r - 1;
-for (int i = len2; i >= 0; i--) {
-for (int j = 0; j < i; j++) {
-if (arr[i] + arr[j] == value) {
-cnt++;
-}
-if (arr[i] + arr[j] > value) {
+int countPairs2(int* arr, int len, int value)
+{
+int count2 = 0;
+int i = 0, j = len - 1;
+while (arr[i] < arr[j])
+{
+while (arr[i] < arr[j])
+{
+if (arr[i] + arr[j] < value)
 break;
+else if (arr[i] + arr[j] == value)
+{
+count2++;
+int k = i + 1;
+while (arr[k] + arr[j] == value)
+{
+count2++;
+k++;
 }
 }
+j--;
 }
-return cnt;
+//j = len - 1;
+i++;
 }
-int countPairs3(int* arr, int len, int value) {
-int left = 0, right = len - 1, middle, count = 0, i = 0;
-int pseudoValue = value - arr[0];
-if (pseudoValue <= 0)
-return 0;
-for (i = 0; i < len; i++) {
+return count2;
+}
+int countPairs3(int* arr, int len, int value)
+{
+int left = 0, right = len - 1, middle, count3 = 0;
+/*if (arr[0] >= value)
+return 0; */
+int pseudoValue;
+for (int i = 0; i < len - 1; i++)
+{
 pseudoValue = value - arr[i];
 if (pseudoValue <= 0)
 break;
-left = i;
+left = i + 1;
 right = len - 1;
-if (arr[left] <= pseudoValue && pseudoValue <= arr[right]) {
-while (left <= right) {
+if (i == 90)
+{
+int kek = 1 + 2;
+}
+if (arr[left] < pseudoValue && pseudoValue < arr[right])
+{
+while (left <= right)
+{
 middle = (left + right) / 2;
-if (arr[middle] == pseudoValue) {
-count++;
+if (arr[middle] == pseudoValue)
+{
+count3++;
 int buff = middle + 1;
-while (buff < len && arr[buff] == pseudoValue) {
-count++;
+while (buff < len && arr[buff] == pseudoValue)
+{
+count3++;
 buff++;
 }
 buff = middle - 1;
-while (buff >= 0 && arr[buff] == pseudoValue) {
-count++;
+while (buff >= left && arr[buff] == pseudoValue)
+{
+count3++;
 buff--;
 }
 break;
-} else if (pseudoValue < arr[middle]) {
+}
+else if (pseudoValue < arr[middle])
 right = middle - 1;
-} else {
+else
 left = middle + 1;
 }
 }
 }
-}
-return count;
-}
+return count3;
