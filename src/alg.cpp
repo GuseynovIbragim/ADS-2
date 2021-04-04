@@ -20,8 +20,7 @@ int countPairs2(int *arr, int len, int value) {
             if (arr[i] != arr[j]) {
                 if (arr[i] + arr[j] < value) {
                     break;
-                }
-                else if (arr[i] + arr[j] == value) {
+                } else if (arr[i] + arr[j] == value) {
                     count++;
                 }
                 j--;
@@ -62,8 +61,7 @@ int countPairs3(int *arr, int len, int value) {
                     break;
                 } else if (pseudoValue < arr[middle]) {
                     right = middle - 1;
-                }
-                else {
+                } else {
                     left = middle + 1;
                 }
             }
