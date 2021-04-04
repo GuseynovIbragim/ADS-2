@@ -1,35 +1,39 @@
 // Copyright 2021 NNTU-CS
 
 int countPairs1(int *arr, int len, int value) {
-    int count = 0;
-    for (int i = 0; i < len; i++) {
+    int cnt = 0;
+    for (int i = 0; i < len - 1; i++) {
         for (int j = i + 1; j < len; j++) {
-            if (arr[i] != arr[j] && arr[i] + arr[j] == value) {
-                count++;
+            if (arr[i] + arr[j] == value) {
+                cnt++;
             }
         }
     }
-    return count;
+    return cnt;
 }
 
 int countPairs2(int *arr, int len, int value) {
-    int count = 0;
-    int i = 0, j = len - 1;
-    while (arr[i] < arr[j]) {
-        while (arr[i] < arr[j]) {
-            if (arr[i] != arr[j]) {
-                if (arr[i] + arr[j] < value) {
-                    break;
-                } else if (arr[i] + arr[j] == value) {
-                    count++;
-                }
-                j--;
-            }
-        }
-        j = len - 1;
-        i++;
+    int cnt = 0, r = len - 1, l = 0, mid;
+    while (l < r - 1) {
+        mid = (l + r) / 2;
+        if (arr[mid] <= value) {
+            l = mid + 1;
+			} else {
+            r = mid;
+			}
     }
-    return count;
+    int len2 = r - 1;
+    for (int i = len2; i >= 0; i--) {
+        for (int j = 0; j < i; j++) {
+            if (arr[i] + arr[j] == value) {
+                cnt++;
+				}
+            if (arr[i] + arr[j] > value) {
+                break;
+				}
+        }
+    }
+    return cnt;
 }
 
 int countPairs3(int *arr, int len, int value) {
@@ -37,33 +41,39 @@ int countPairs3(int *arr, int len, int value) {
     int pseudoValue = value - arr[0];
     if (pseudoValue <= 0)
         return 0;
-    for (i = 0; i < len; i++) {
+    for (i = 0; i < len; i++)
+    {
         pseudoValue = value - arr[i];
         if (pseudoValue <= 0)
             break;
         left = i;
         right = len - 1;
-        if (arr[left] <= pseudoValue && pseudoValue <= arr[right]) {
-            while (left <= right) {
+        if (arr[left] <= pseudoValue && pseudoValue <= arr[right])
+        {
+            while (left <= right)
+            {
                 middle = (left + right) / 2;
-                if (arr[middle] == pseudoValue) {
+                if (arr[middle] == pseudoValue)
+                {
                     count++;
                     int buff = middle + 1;
-                    while (buff < len && arr[buff] == pseudoValue) {
+                    while (buff < len && arr[buff] == pseudoValue)
+                    {
                         count++;
                         buff++;
                     }
                     buff = middle - 1;
-                    while (buff >= 0 && arr[buff] == pseudoValue) {
+                    while (buff >= 0 && arr[buff] == pseudoValue)
+                    {
                         count++;
                         buff--;
                     }
                     break;
                 } else if (pseudoValue < arr[middle]) {
                     right = middle - 1;
-                } else {
+					} else {
                     left = middle + 1;
-                }
+					}
             }
         }
     }
