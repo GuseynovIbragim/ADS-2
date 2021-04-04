@@ -1,3 +1,4 @@
+// Copyright 2021 NNTU-CS
 int countPairs1(int* arr, int len, int value) {
 int count1 = 0;
 for (int i = 0; i < len; i++) {
@@ -14,8 +15,7 @@ int i = 0, j = len - 1;
 while (arr[i] < arr[j]) {
 while (arr[i] < arr[j]) {
 if (arr[i] + arr[j] < value)
-break;
-else if (arr[i] + arr[j] == value) {
+break; else if (arr[i] + arr[j] == value) {
 count2++;
 int k = i + 1;
 while (arr[k] + arr[j] == value) {
@@ -58,8 +58,7 @@ count3++;
 buff--;
 }
 break;
-}
-else if (pseudoValue < arr[middle])
+} else if (pseudoValue < arr[middle])
 right = middle - 1;
 else
 left = middle + 1;
