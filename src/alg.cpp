@@ -40,9 +40,6 @@ break;
 }
 left = i + 1;
 right = len - 1;
-if (i == 90) {
-int kek = 1 + 2;
-}
 if (arr[left] < pseudoValue && pseudoValue < arr[right]) {
 while (left <= right) {
 middle = (left + right) / 2;
@@ -59,8 +56,7 @@ count3++;
 buff--;
 }
 break;
-} else {
-if (pseudoValue < arr[middle]) {
+} else if (pseudoValue < arr[middle]) {
 right = middle - 1;
 } else {
 left = middle + 1;
