@@ -60,7 +60,7 @@ buff--;
 }
 break;
 } else {
-if (pseudoValue < arr[middle])
+if (pseudoValue < arr[middle]) {
 right = middle - 1;
 } else {
 left = middle + 1;
