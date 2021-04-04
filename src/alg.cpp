@@ -59,10 +59,12 @@ count3++;
 buff--;
 }
 break;
-} else if (pseudoValue < arr[middle])
+} else {
+if (pseudoValue < arr[middle])
 right = middle - 1;
-else
+} else {
 left = middle + 1;
+}
 }
 }
 }
