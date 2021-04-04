@@ -14,8 +14,9 @@ int count2 = 0;
 int i = 0, j = len - 1;
 while (arr[i] < arr[j]) {
 while (arr[i] < arr[j]) {
-if (arr[i] + arr[j] < value)
-break; else if (arr[i] + arr[j] == value) {
+if (arr[i] + arr[j] < value) {
+break;
+} else if (arr[i] + arr[j] == value) {
 count2++;
 int k = i + 1;
 while (arr[k] + arr[j] == value) {
@@ -25,7 +26,6 @@ k++;
 }
 j--;
 }
-//j = len - 1;
 i++;
 }
 return count2;
@@ -35,8 +35,9 @@ int left = 0, right = len - 1, middle, count3 = 0;
 int pseudoValue;
 for (int i = 0; i < len - 1; i++) {
 pseudoValue = value - arr[i];
-if (pseudoValue <= 0)
+if (pseudoValue <= 0) {
 break;
+}
 left = i + 1;
 right = len - 1;
 if (i == 90) {
