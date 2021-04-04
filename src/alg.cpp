@@ -18,19 +18,19 @@ int countPairs2(int *arr, int len, int value) {
         mid = (l + r) / 2;
         if (arr[mid] <= value) {
             l = mid + 1;
-			} else {
+	} else {
             r = mid;
-			}
+	}
     }
     int len2 = r - 1;
     for (int i = len2; i >= 0; i--) {
         for (int j = 0; j < i; j++) {
             if (arr[i] + arr[j] == value) {
                 cnt++;
-				}
+	    }
             if (arr[i] + arr[j] > value) {
                 break;
-				}
+	    }
         }
     }
     return cnt;
@@ -39,8 +39,9 @@ int countPairs2(int *arr, int len, int value) {
 int countPairs3(int *arr, int len, int value) {
     int left = 0, right = len - 1, middle, count = 0, i = 0;
     int pseudoValue = value - arr[0];
-    if (pseudoValue <= 0)
+    if (pseudoValue <= 0) {
         return 0;
+    }
     for (i = 0; i < len; i++)
     {
         pseudoValue = value - arr[i];
@@ -71,9 +72,9 @@ int countPairs3(int *arr, int len, int value) {
                     break;
                 } else if (pseudoValue < arr[middle]) {
                     right = middle - 1;
-					} else {
+		} else {
                     left = middle + 1;
-					}
+		}
             }
         }
     }
